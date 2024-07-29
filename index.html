@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neon Sign Builder</title>
+    <style>
+        /* styles.css */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"], input[type="color"], select, input[type="number"] {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff00ff;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #e600e6;
+        }
+
+        .preview {
+            text-align: center;
+        }
+
+        .neon-sign {
+            font-size: 50px;
+            font-family: Arial, sans-serif;
+            color: #ff00ff;
+            text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Custom Neon Sign Builder</h1>
+        <div class="form-container">
+            <form id="neon-form">
+                <label for="text">Text:</label>
+                <input type="text" id="text" name="text" placeholder="Enter your text" required>
+
+                <label for="color">Color:</label>
+                <input type="color" id="color" name="color" value="#ff00ff">
+
+                <label for="font">Font:</label>
+                <select id="font" name="font">
+                    <option value="Arial">Arial</option>
+                    <option value="Courier New">Courier New</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Tahoma">Tahoma</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                    <option value="Verdana">Verdana</option>
+                </select>
+
+                <label for="size">Size:</label>
+                <input type="number" id="size" name="size" min="10" max="200" value="50">
+
+                <label for="glow">Glow Effect:</label>
+                <input type="checkbox" id="glow" name="glow">
+
+                <button type="submit">Update Neon Sign</button>
+            </form>
+        </div>
+        <div class="preview">
+            <h2>Preview:</h2>
+            <div id="neon-sign" class="neon-sign">Your Text Here</div>
+        </div>
+    </div>
+
+    <script>
+        // script.js
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('neon-form');
+            const neonSign = document.getElementById('neon-sign');
+            
+            form.addEventListener('input', function() {
+                const text = document.getElementById('text').value;
+                const color = document.getElementById('color').value;
+                const font = document.getElementById('font').value;
+                const size = document.getElementById('size').value;
+                const glow = document.getElementById('glow').checked;
+
+                neonSign.textContent = text || 'Your Text Here';
+                neonSign.style.color = color;
+                neonSign.style.fontFamily = font;
+                neonSign.style.fontSize = size + 'px';
+
+                if (glow) {
+                    neonSign.style.textShadow = `0 0 10px ${color}, 0 0 20px ${color}, 0 0 30px ${color}`;
+                } else {
+                    neonSign.style.textShadow = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
